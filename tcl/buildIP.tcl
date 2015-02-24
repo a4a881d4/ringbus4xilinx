@@ -13,10 +13,9 @@ proc buildip { top } {
 	update_compile_order -fileset sources_1
 	set_property top $top [current_fileset]
 	update_compile_order -fileset sources_1
-	unset dir
-	append dir ../proj / $top / $top .srcs/sources_1/imports
-	put $dir
-	ipx::package_project -root_dir $dir
+	append ipdir ../proj / $top / $top .srcs/sources_1/imports
+	put $ipdir
+	ipx::package_project -root_dir $ipdir
 	set_property library user [ipx::current_core]
 	set_property taxonomy /UserIP [ipx::current_core]
 	set_property vendor_display_name a4a881d4 [ipx::current_core]
@@ -29,9 +28,10 @@ proc buildip { top } {
 	put $fn
 	ipx::archive_core $fn [ipx::current_core]
 	close_project
+	file delete -force $dir
 }
 
-file mkdir -force ../lib
+file mkdir ../lib
 buildip rbus
 buildip EPMemOut
 buildip EPMemIn
