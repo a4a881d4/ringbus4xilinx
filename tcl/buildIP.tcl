@@ -31,6 +31,7 @@ proc buildip { top } {
 	close_project
 }
 
+file mkdir -force ../lib
 buildip rbus
 buildip EPMemOut
 buildip EPMemIn
