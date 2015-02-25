@@ -31,4 +31,5 @@ work/*
 proj/*
 lib/*
 managed_ip_project/*
+.Xil
 

@@ -31,6 +31,8 @@ proc buildInterface { interface ports } {
 	
 }
 
+file mkdir ../lib
+
 set rbTx {
 	{
 		name tx
@@ -57,14 +59,14 @@ buildInterface rbTx $rbTx
 set rbRx {
 	{
 		name rx
-		master_direction in 
-		slave_direction out
+		master_direction out
+		slave_direction in
 		width -1
 	}
 	{
 		name sop
-		master_direction in
-		slave_direction out
+		master_direction out
+		slave_direction in
 		width 1
 	}
 }
