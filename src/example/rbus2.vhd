@@ -291,7 +291,7 @@ DMA1:DMANP
 		Req => DMA1_Req,
 		laddr => DMA1A,
 		
-		busy => DMA0_Busy,
+		busy => DMA1_Busy,
 		tx_sop => tx_sop_i(1),
 		
 		-- CPU bus

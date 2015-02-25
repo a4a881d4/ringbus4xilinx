@@ -52,8 +52,8 @@ entity CSlave is
 		
 		-- Local Bus 
 		addr : out std_logic_vector( Bwidth-1 downto 0 );
-		Din : in STD_LOGIC_VECTOR( Bwidth-1 downto 0 );
-		Dout : out STD_LOGIC_VECTOR( Bwidth-1 downto 0 ) := (others => '0');
+		Din : out STD_LOGIC_VECTOR( Bwidth-1 downto 0 );
+		Dout : in STD_LOGIC_VECTOR( Bwidth-1 downto 0 ) := (others => '0');
 		wr : out std_logic;
 		rd : out std_logic := '0'
 		-- 
@@ -78,7 +78,7 @@ begin
 		state<=state_IDLE;
 		command<=(others=>'0');
 		addr<=(others=>'0');
-		dout<=(others=>'0');
+		Din<=(others=>'0');
 		req_i<='0';
 		wr<='0';
 		tx_i<=(others=>'0');
@@ -100,7 +100,7 @@ begin
 					tx_i<=rx;
 				elsif command=command_write then
 					wr<='1';
-					dout<=rx;
+					Din<=rx;
 					state<=state_idle;
 				else
 					state<=state_idle;
@@ -111,7 +111,7 @@ begin
 					state<=state_SENDING;
 				end if;
 			when state_SENDING =>
-				tx_i<=din;
+				tx_i<=Dout;
 				state<=state_IDLE;
 			when others =>
 				state<=state_IDLE;
